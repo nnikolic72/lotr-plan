@@ -1,0 +1,22 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "my-app"
+version = "0.1.0"
+description = ""
+authors = ["Nenad Nikolic <nnenad@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.101.1"
+sqlalchemy = "^2.0.20"
+psycopg2-binary = "^3.1.10"
+alembic = "^1.11.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.0"
+isort = "^5.12.0"
+black = "^23.7.0"
+ruff = "^0.0.285"
