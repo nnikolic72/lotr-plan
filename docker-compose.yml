@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  web:
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+    build: .
+    ports:
+      - "8000:8000"
+  db:
+    image: "postgres:15.4-bullseye"
+    environment:
+      POSTGRES_DB: "yourdb"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
