@@ -14,7 +14,6 @@ def read_root():
 
 
 # Return True if email address is valid
-# test precommit hook 1
 def is_valid(email):
     # Regex for validating an Email
     regex = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
