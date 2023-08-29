@@ -23,3 +23,20 @@ pytest = "^7.4.0"
 isort = "^5.12.0"
 black = "^23.7.0"
 ruff = "^0.0.285"
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

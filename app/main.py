@@ -16,7 +16,7 @@ def read_root():
 # Return True if email address is valid
 def is_valid(email):
     # Regex for validating an Email
-    regex = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
+    regex = r"^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
 
     # Pass the regular expression
     # and the string in search() method
