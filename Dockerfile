@@ -28,6 +28,7 @@ RUN npm run build
 
 # Set the working directory back to the main application
 WORKDIR /usr/src/app
+# RUN poetry shell
 
-# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-CMD ["tail", "-f", "/dev/null"]
+CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["tail", "-f", "/dev/null"]

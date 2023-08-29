@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Header CSS */
+/* ... */
+
+/* Navbar CSS */
+.navbar {
+  flex: 1;
+  /* Add more styling */
+}
+
+/* Main CSS */
+.main-content {
+  flex: 3;
+  /* Add more styling */
+}
