@@ -30,7 +30,7 @@ retry() {
   done
 }
 
-retry 105 1 psql $DATABASE_URLexit -c '\l' >/dev/null
+retry 105 1 psql $DATABASE_URL -c '\l' >/dev/null
 
 echo >&2 "$(date +%Y%m%dt%H%M%S) Postgres is up - executing command"
 

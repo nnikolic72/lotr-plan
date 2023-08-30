@@ -6,7 +6,7 @@ export const Characters = () => {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/characters/all/')
+    axios.get('/api/v1/characters/all/')
       .then((response) => {
         setCharacters(response.data);
       })
@@ -18,6 +18,7 @@ export const Characters = () => {
   return (
     <div className="container">
       <h1>Characters</h1>
+
       <ul className="list-group">
         {characters.map((character, index) => (
           <li key={index} className="list-group-item">
