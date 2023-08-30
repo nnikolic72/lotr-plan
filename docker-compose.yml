@@ -2,16 +2,18 @@ version: '3.8'
 services:
   web:
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - DATABASE_URL=postgresql://admin:admin@db:5432/lotr-home
     build: .
     ports:
       - "8000:8000"
   db:
     image: "postgres:15.4-bullseye"
     environment:
-      POSTGRES_DB: "yourdb"
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "lotr-home"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5432:5432"
   nginx:
     image: nginx:1.25.2-alpine-slim
     ports:
