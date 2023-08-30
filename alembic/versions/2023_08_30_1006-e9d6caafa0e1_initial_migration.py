@@ -1,18 +1,21 @@
-"""added characters table
+"""initial migration
 
-Revision ID: ed534e8eccbb
+Revision ID: e9d6caafa0e1
 Revises:
-Create Date: 2023-08-30 09:39:51.866005
+Create Date: 2023-08-30 10:06:40.879833
 
 """
+import csv
+import os
 from typing import Sequence, Union
 
 import sqlalchemy as sa
+from sqlalchemy.sql import column, table
 
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = "ed534e8eccbb"
+revision: str = "e9d6caafa0e1"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -35,6 +38,30 @@ def upgrade() -> None:
         sa.Column("evasion", sa.Integer(), nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
+
+    # Define the table in SQLAlchemy terms to use it for data population
+    characters_table = table(
+        "characters",
+        column("name", sa.String),
+        column("health", sa.Integer),
+        column("damage", sa.Integer),
+        column("armor", sa.Integer),
+        column("focus", sa.Integer),
+        column("resistance", sa.Integer),
+        column("speed", sa.Integer),
+        column("block", sa.Integer),
+        column("critical_chance", sa.Integer),
+        column("evasion", sa.Integer),
+    )
+
+    # Path to the CSV file (you would adjust this path to where your CSV file is located)
+    csv_file_path = os.path.join(os.path.dirname(__file__), "../../CSV/characters.csv")
+
+    # Read data from CSV and insert it into the `characters` table
+    with open(csv_file_path, "r") as file:
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            op.bulk_insert(characters_table, [row])
     # ### end Alembic commands ###
 
 
