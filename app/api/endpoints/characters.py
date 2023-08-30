@@ -1,11 +1,14 @@
 from fastapi import APIRouter
+from fastapi.encoders import jsonable_encoder
+
+from app.db.models import characters
+from settings import SessionLocal
 
 routes = APIRouter()
+session = SessionLocal()
 
 
 @routes.get("/all/")
 async def read_characters_all():
-    return [
-        {"character_id": "1", "character_name": "Aragorn"},
-        {"character_id": "2", "character_name": "Ghazh Ironhide"},
-    ]
+    characters_data = session.query(characters.Character).all()
+    return jsonable_encoder(characters_data)

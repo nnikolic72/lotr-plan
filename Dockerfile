@@ -2,8 +2,15 @@ FROM python:3.11.4-slim
 
 # Install system dependencies for Node.js and poetry
 RUN apt-get update && apt-get install -y nodejs npm
+RUN apt-get install -y postgresql-client
 RUN pip install poetry
 RUN poetry config virtualenvs.create false --local
+
+# Copy wait_for_db script and make it executable
+COPY wait_for_db.sh /wait_for_db.sh
+RUN chmod +x /wait_for_db.sh
+
+COPY entrypoint.sh /entrypoint.sh
 
 WORKDIR /usr/src/app
 # Copy the rest of the codebase
@@ -28,7 +35,5 @@ RUN npm run build
 
 # Set the working directory back to the main application
 WORKDIR /usr/src/app
-# RUN poetry shell
 
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-# CMD ["tail", "-f", "/dev/null"]
+ENTRYPOINT [ "/entrypoint.sh" ]
